@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\carzu\\OneDrive\\Asiakirjat\\Projekti\\Bot_project\\Bot_project\\Bot_project.csproj": {}
+    "C:\\Users\\carzu\\Projekti\\Bot_project\\Bot_project\\Bot_project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\carzu\\OneDrive\\Asiakirjat\\Projekti\\Bot_project\\Bot_project\\Bot_project.csproj": {
+    "C:\\Users\\carzu\\Projekti\\Bot_project\\Bot_project\\Bot_project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\carzu\\OneDrive\\Asiakirjat\\Projekti\\Bot_project\\Bot_project\\Bot_project.csproj",
+        "projectUniqueName": "C:\\Users\\carzu\\Projekti\\Bot_project\\Bot_project\\Bot_project.csproj",
         "projectName": "Bot_project",
-        "projectPath": "C:\\Users\\carzu\\OneDrive\\Asiakirjat\\Projekti\\Bot_project\\Bot_project\\Bot_project.csproj",
+        "projectPath": "C:\\Users\\carzu\\Projekti\\Bot_project\\Bot_project\\Bot_project.csproj",
         "packagesPath": "C:\\Users\\carzu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\carzu\\OneDrive\\Asiakirjat\\Projekti\\Bot_project\\Bot_project\\obj\\",
+        "outputPath": "C:\\Users\\carzu\\Projekti\\Bot_project\\Bot_project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,6 +44,20 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "DSharpPlus": {
+              "target": "Package",
+              "version": "[4.1.0-nightly-00866, )"
+            },
+            "DSharpPlus.CommandsNext": {
+              "target": "Package",
+              "version": "[4.1.0-nightly-00866, )"
+            },
+            "DSharpPlus.Interactivity": {
+              "target": "Package",
+              "version": "[4.1.0-nightly-00866, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
