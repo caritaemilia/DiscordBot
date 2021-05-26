@@ -6,7 +6,8 @@ namespace Bot_project
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var bot = new Bot();
+            bot.RunAsync().GetAwaiter().GetResult();
         }
     }
 }
