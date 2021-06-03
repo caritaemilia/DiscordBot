@@ -1,0 +1,89 @@
+﻿using Bot_project.Handlers;
+using Bot_project.Handlers.Dialogue;
+using BotCore.Services;
+using Discord;
+using DiscordBotDatabase.Models.cs;
+using DSharpPlus.CommandsNext;
+using DSharpPlus.CommandsNext.Attributes;
+using DSharpPlus.Entities;
+using Npgsql;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Bot_project.Commands
+{
+    public class CreatePollCommand : BaseCommandModule
+    {
+        private readonly IPollService _pollService;
+
+        public CreatePollCommand(IPollService pollService)
+        {
+            _pollService = pollService;
+        }
+
+
+        [Command("createpoll")]
+        [Description("Create a poll")]
+        public async Task CreatePoll(CommandContext ctx)
+        {
+            var pollOptions = new StringStep("What are the poll options, please divide the options with comma", null);
+
+            var pollName = new StringStep("What is the poll called?", pollOptions);
+
+
+            var poll = new Poll();
+
+            pollName.OnValidResult += (result) => poll.PollName = result;
+
+            pollOptions.OnValidResult += (result) => poll.choices = result;
+
+            var userChannel = await ctx.Member.CreateDmChannelAsync().ConfigureAwait(false);
+
+
+            var inputDialogueHandler = new DialogueHandler(
+                ctx.Client,
+                userChannel,
+                ctx.User,
+                pollName
+
+                );
+
+
+            bool succeeded = await inputDialogueHandler.ProcessDialogue().ConfigureAwait(false);
+            if (!succeeded) { return; }
+
+            await _pollService.CreateNewPollAsync(poll).ConfigureAwait(false);
+            int i = 0;
+            string answe = string.Empty;
+
+            await ctx.Member.SendMessageAsync($"Poll: {poll.PollName} Created Successfully").ConfigureAwait(false);
+            IEmote[] reacts = { new Emoji(":one:"), new Emoji(":two:"), new Emoji(":three:"), new Emoji(":four:"), new Emoji(":five:"), new Emoji(":six:"), new Emoji(":seven:") };
+            IEmote[] emoji = new IEmote[10];
+
+            string[] okei = poll.choices.Split(',');
+
+            foreach (var item in okei)
+            {
+                emoji[i] = reacts[i];
+                answe = reacts[i] + " " + item + "\n";
+
+            }
+
+
+            var pollEmbed = new DiscordEmbedBuilder
+            {
+                Title = poll.PollName.ToUpper(),
+                Color = DiscordColor.Red,
+                // Description = string.Join(emoji, " ", poll.choices.Replace(',', '\n'))
+
+            };
+
+
+            var pollMessage = await ctx.Channel.SendMessageAsync(embed: pollEmbed).ConfigureAwait(false);
+
+            await pollMessage.CreateReactionAsync(DiscordEmoji.FromName(ctx.Client, ":thumbsup:"));
+
+
+        }
+    }
+}
