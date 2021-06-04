@@ -6,6 +6,7 @@ This Discord bot is a coded in C# with Discord.Net.
 ## Getting Started
 
 Create a bot account :
+
     - https://docs.stillu.cc/guides/getting_started/first-bot.html
 	- Go to : https://discordapp.com/developers/applications/me
 	- Click on "New App", and create one for your bot
