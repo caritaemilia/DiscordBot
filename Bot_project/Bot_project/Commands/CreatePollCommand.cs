@@ -6,8 +6,7 @@ using DiscordBotDatabase.Models.cs;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
-using Npgsql;
-using System.Collections.Generic;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Bot_project.Commands
@@ -26,14 +25,18 @@ namespace Bot_project.Commands
         [Description("Create a poll")]
         public async Task CreatePoll(CommandContext ctx)
         {
+            await ctx.Message.DeleteAsync().ConfigureAwait(false);
+
             var pollOptions = new StringStep("What are the poll options, please divide the options with comma", null);
 
             var pollName = new StringStep("What is the poll called?", pollOptions);
-
+           
+           
 
             var poll = new Poll();
 
             pollName.OnValidResult += (result) => poll.PollName = result;
+
 
             pollOptions.OnValidResult += (result) => poll.choices = result;
 
@@ -47,35 +50,21 @@ namespace Bot_project.Commands
                 pollName
 
                 );
-
+            
 
             bool succeeded = await inputDialogueHandler.ProcessDialogue().ConfigureAwait(false);
             if (!succeeded) { return; }
 
             await _pollService.CreateNewPollAsync(poll).ConfigureAwait(false);
-            int i = 0;
-            string answe = string.Empty;
+
 
             await ctx.Member.SendMessageAsync($"Poll: {poll.PollName} Created Successfully").ConfigureAwait(false);
-            IEmote[] reacts = { new Emoji(":one:"), new Emoji(":two:"), new Emoji(":three:"), new Emoji(":four:"), new Emoji(":five:"), new Emoji(":six:"), new Emoji(":seven:") };
-            IEmote[] emoji = new IEmote[10];
-
-            string[] okei = poll.choices.Split(',');
-
-            foreach (var item in okei)
-            {
-                emoji[i] = reacts[i];
-                answe = reacts[i] + " " + item + "\n";
-
-            }
-
 
             var pollEmbed = new DiscordEmbedBuilder
             {
-                Title = poll.PollName.ToUpper(),
+                Title = "#" + poll.Id + " " + poll.PollName.ToUpper(),
                 Color = DiscordColor.Red,
-                // Description = string.Join(emoji, " ", poll.choices.Replace(',', '\n'))
-
+                Description = string.Join(" ", poll.choices).Replace(',', '\n')
             };
 
 
@@ -84,6 +73,9 @@ namespace Bot_project.Commands
             await pollMessage.CreateReactionAsync(DiscordEmoji.FromName(ctx.Client, ":thumbsup:"));
 
 
+
         }
+        
+
     }
 }

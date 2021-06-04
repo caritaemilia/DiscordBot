@@ -1,7 +1,4 @@
 ﻿using DiscordBotDatabase.Models.cs;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BotCore.Services
@@ -11,5 +8,7 @@ namespace BotCore.Services
     {
         Task CreateNewPollAsync(Poll poll);
         Task<Poll> GetPollByNameAsync(string Pollname);
+
+        Task CreateNewVoteAsync(Vote vote);
     }
 }

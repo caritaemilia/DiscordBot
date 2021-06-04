@@ -25,7 +25,7 @@ namespace Bot_project.Commands
         [Description("Get info about previously made poll")]
         public async Task PollInfo(CommandContext ctx)
         {
-
+            await ctx.Message.DeleteAsync().ConfigureAwait(false);
             var itemNameStep = new StringStep("Please give the poll name", null);
 
             string pollName = string.Empty;
@@ -50,11 +50,12 @@ namespace Bot_project.Commands
 
 
 
-        [Command("deletepoll")] // this doesn't work yet :D
+        [Command("deletepoll")]
+        [Description("Delete poll")]
         public async Task DeletePoll(CommandContext ctx)
         {
 
-
+            await ctx.Message.DeleteAsync().ConfigureAwait(false);
             var itemNameStep = new StringStep("Give the pollname that you want to delete", null);
 
             string nameToDelete = string.Empty;

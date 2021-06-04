@@ -65,6 +65,7 @@ namespace Bot_project
             Commands.RegisterCommands<PollCommands>();
             Commands.RegisterCommands<MemeCommands>();
             Commands.RegisterCommands<CreatePollCommand>();
+            Commands.RegisterCommands<CreateVoteCommand>();
          
             
 

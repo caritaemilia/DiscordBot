@@ -14,6 +14,7 @@ namespace Bot_project.Commands
         [Description("Get your daily programming meme by writing ?dailymeme")]
         public async Task DailyMeme(CommandContext ctx)
         {
+            await ctx.Message.DeleteAsync().ConfigureAwait(false);
             var interactivity = ctx.Client.GetInteractivity();
             var client = new HttpClient();
             var result = await client.GetStringAsync($"https://www.reddit.com/r/ProgrammerHumor/random.json?limit=1");
@@ -36,6 +37,7 @@ namespace Bot_project.Commands
         [Description("Get your random meme by writing ?othermeme")]
         public async Task OtherMeme(CommandContext ctx)
         {
+            await ctx.Message.DeleteAsync().ConfigureAwait(false);
             var interactivity = ctx.Client.GetInteractivity();
             var client = new HttpClient();
             var result = await client.GetStringAsync($"https://www.reddit.com/r/Memes/random.json?limit=1");

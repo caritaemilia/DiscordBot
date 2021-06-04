@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DiscordBotDatabase
 {
-   public abstract class Entity
+    public abstract class Entity
     {
         [Key]
         public int Id { get; set; }

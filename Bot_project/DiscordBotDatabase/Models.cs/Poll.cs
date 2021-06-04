@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DiscordBotDatabase.Models.cs
 {
     public class Poll : Entity
     {
-        public int Id { get; set; }
+        
         public string PollName { get; set; }
 
         public string choices { get; set; }
 
+
     }
+    
 }

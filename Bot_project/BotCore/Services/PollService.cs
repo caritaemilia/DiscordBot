@@ -1,11 +1,11 @@
 ﻿using DiscordBotDatabase;
 using DiscordBotDatabase.Models.cs;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace BotCore.Services
 {
-    
+
 
     public class PollService : IPollService
     {
@@ -31,6 +31,14 @@ namespace BotCore.Services
             using var context = new PollContext(_options);
 
             return await context.Polls.FirstOrDefaultAsync(x => x.PollName.ToLower() == pollName.ToLower()).ConfigureAwait(false);
+        }
+
+        public async Task CreateNewVoteAsync(Vote vote)
+        {
+            using var context = new PollContext(_options);
+            context.Add(vote);
+            await context.SaveChangesAsync().ConfigureAwait(false);
+
         }
     }
 }
