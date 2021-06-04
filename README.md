@@ -17,7 +17,7 @@ Create a bot account :
 Modify config.json with your bot token and other settings.
 Move this file to the same folder as your executable.
 
-Modify startup.cs with route to your database
+
 
 
 ## Features
