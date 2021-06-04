@@ -1,12 +1,10 @@
 ﻿using Bot_project.Handlers;
 using Bot_project.Handlers.Dialogue;
 using BotCore.Services;
-using Discord;
 using DiscordBotDatabase.Models.cs;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
-using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Bot_project.Commands
@@ -30,8 +28,7 @@ namespace Bot_project.Commands
             var pollOptions = new StringStep("What are the poll options, please divide the options with comma", null);
 
             var pollName = new StringStep("What is the poll called?", pollOptions);
-           
-           
+
 
             var poll = new Poll();
 
@@ -50,7 +47,7 @@ namespace Bot_project.Commands
                 pollName
 
                 );
-            
+
 
             bool succeeded = await inputDialogueHandler.ProcessDialogue().ConfigureAwait(false);
             if (!succeeded) { return; }
@@ -73,9 +70,7 @@ namespace Bot_project.Commands
             await pollMessage.CreateReactionAsync(DiscordEmoji.FromName(ctx.Client, ":thumbsup:"));
 
 
-
         }
-        
 
     }
 }

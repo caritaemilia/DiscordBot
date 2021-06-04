@@ -1,13 +1,10 @@
 ﻿using Bot_project.Handlers;
 using Bot_project.Handlers.Dialogue;
 using BotCore.Services;
-using Discord;
 using DiscordBotDatabase.Models.cs;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
-using DSharpPlus.Entities;
 using Npgsql;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Bot_project.Commands
@@ -51,7 +48,7 @@ namespace Bot_project.Commands
 
 
         [Command("deletepoll")]
-        [Description("Delete poll")]
+        [Description("Delete poll, this is still in progress")]
         public async Task DeletePoll(CommandContext ctx)
         {
 

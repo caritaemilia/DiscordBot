@@ -9,6 +9,7 @@ namespace DiscordBotDatabase.Models.cs
 
         public string choices { get; set; }
 
+       
 
     }
     

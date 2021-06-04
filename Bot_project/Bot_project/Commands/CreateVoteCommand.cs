@@ -4,7 +4,6 @@ using BotCore.Services;
 using DiscordBotDatabase.Models.cs;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
-using DSharpPlus.Entities;
 using MyFirstBot.Hendlers.Dialog.Steps;
 using System.Threading.Tasks;
 
@@ -42,8 +41,8 @@ namespace Bot_project.Commands
 
             pollVoteStep.OnValidResult += (result) => Vote.VoteName = result;
 
-     
-          
+
+
 
             var userChannel = await ctx.Member.CreateDmChannelAsync().ConfigureAwait(false);
 
@@ -55,6 +54,7 @@ namespace Bot_project.Commands
                 pollIdStep
 
                 );
+
             bool succeeded = await inputDialogueHandler.ProcessDialogue().ConfigureAwait(false);
             if (!succeeded) { return; }
 
@@ -67,10 +67,39 @@ namespace Bot_project.Commands
             {
                 await _pollService.CreateNewVoteAsync(Vote).ConfigureAwait(false);
             }
-          
+
             await ctx.Member.SendMessageAsync($"Voted for {Vote.VoteName} Successfully!").ConfigureAwait(false);
 
 
+        }
+
+
+        [Command("pollresult")]
+        [Description("Get vote results")]
+        public async Task VoteResult(CommandContext ctx)
+        {
+            await ctx.Message.DeleteAsync().ConfigureAwait(false);
+            var voteIdStep = new IntStep("Please give the poll Id", null);
+
+            int pollId = 0;
+
+            voteIdStep.OnValidResult += (result) => pollId = result;
+
+            var userChannel = await ctx.Member.CreateDmChannelAsync().ConfigureAwait(false);
+
+            var inputDialogueHandler = new DialogueHandler(
+                ctx.Client,
+                userChannel,
+                ctx.User,
+                voteIdStep
+            );
+
+            bool succeeded = await inputDialogueHandler.ProcessDialogue().ConfigureAwait(false);
+
+            Vote vote = await _pollService.GetVotesById(pollId).ConfigureAwait(false);
+
+           
+            await ctx.Member.SendMessageAsync($" Poll option: {vote.VoteName}, Votes: {vote.VoteCount}").ConfigureAwait(false);
         }
     }
 }

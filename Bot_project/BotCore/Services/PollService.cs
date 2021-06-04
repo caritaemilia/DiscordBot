@@ -1,6 +1,7 @@
 ﻿using DiscordBotDatabase;
 using DiscordBotDatabase.Models.cs;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BotCore.Services
@@ -38,6 +39,16 @@ namespace BotCore.Services
             using var context = new PollContext(_options);
             context.Add(vote);
             await context.SaveChangesAsync().ConfigureAwait(false);
+
+        }
+
+
+        public async Task<Vote> GetVotesById(int pollId)
+        {
+            using var context = new PollContext(_options);
+
+      
+            return await context.Votes.FirstOrDefaultAsync(x => x.PollId == pollId).ConfigureAwait(false);
 
         }
     }

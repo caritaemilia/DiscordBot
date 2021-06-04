@@ -10,5 +10,7 @@ namespace BotCore.Services
         Task<Poll> GetPollByNameAsync(string Pollname);
 
         Task CreateNewVoteAsync(Vote vote);
+
+        Task<Vote> GetVotesById(int id);
     }
 }
