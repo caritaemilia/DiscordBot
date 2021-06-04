@@ -1,4 +1,5 @@
 # Discord Bot Project
+
 A Discord C#/.NET Core Bot
 
 
@@ -21,13 +22,7 @@ Modify startup.cs with route to your database
 
 ## Features
 
-    - Post random memes(general or programming)
+    - Post memes(general or programming)
     - Create a poll that is saved to database
     - Vote for previously made polls
-    - Easily add your own commands
 
-
-## How to Use
-
-    - Write "?help" to get started
-    - All commands have  "?" as prefix, prefix can be changed in config.json file
