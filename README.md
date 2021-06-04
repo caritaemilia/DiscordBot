@@ -26,10 +26,6 @@ Modify startup.cs with route to your database
     - Vote for previously made polls
     - Easily add your own commands
 
-## Plans
-
-    - Be able to delete old polls and/or votes
-    - Get actual vote results
 
 ## How to Use
 
