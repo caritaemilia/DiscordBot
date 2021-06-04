@@ -1,6 +1,6 @@
 # Discord Bot Project
 A Discord C#/.NET Core Bot
-This Discord bot is a coded in C# with Discord.Net.
+
 
 
 ## Getting Started
