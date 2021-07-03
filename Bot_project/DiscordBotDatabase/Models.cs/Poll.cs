@@ -7,7 +7,7 @@ namespace DiscordBotDatabase.Models.cs
         
         public string PollName { get; set; }
 
-        public string choices { get; set; }
+        public string PollChoices { get; set; }
 
        
 

@@ -35,7 +35,7 @@ namespace Bot_project.Commands
             pollName.OnValidResult += (result) => poll.PollName = result;
 
 
-            pollOptions.OnValidResult += (result) => poll.choices = result;
+            pollOptions.OnValidResult += (result) => poll.PollChoices = result;
 
             var userChannel = await ctx.Member.CreateDmChannelAsync().ConfigureAwait(false);
 
@@ -61,7 +61,7 @@ namespace Bot_project.Commands
             {
                 Title = "#" + poll.Id + " " + poll.PollName.ToUpper(),
                 Color = DiscordColor.Red,
-                Description = string.Join(" ", poll.choices).Replace(',', '\n')
+                Description = string.Join(" ", poll.PollChoices).Replace(',', '\n')
             };
 
 
