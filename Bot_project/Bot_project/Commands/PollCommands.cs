@@ -42,7 +42,7 @@ namespace Bot_project.Commands
 
             Poll poll = await _pollService.GetPollByNameAsync(pollName).ConfigureAwait(false);
 
-            await ctx.Member.SendMessageAsync($"Id: { poll.Id}, Name: {poll.PollName}, Choices: {poll.choices}").ConfigureAwait(false);
+            await ctx.Member.SendMessageAsync($"Id: { poll.Id}, Name: {poll.PollName}, Choices: {poll.PollChoices}").ConfigureAwait(false);
         }
 
 
