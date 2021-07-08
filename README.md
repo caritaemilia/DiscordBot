@@ -14,8 +14,9 @@ Create a bot account :
 	- Then you will have to create a bot user http://imgur.com/opbiwGl
 	- Create an invite for your bot using : https://discordapp.com/oauth2/authorize?client_id=APP_ID&scope=bot and replace "APP_ID" with the client ID of your app.
 
-Modify config.json with your bot token and other settings.
+Modify config.json with your bot token and other settings in 2 locations.
 Move this file to the same folder as your executable.
+Change database address to yout database in Startup.cs
 
 
 
