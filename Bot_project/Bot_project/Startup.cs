@@ -13,7 +13,7 @@ namespace Bot_project
         {
             services.AddDbContext<PollContext>(options =>
             {
-                options.UseNpgsql((@"Server=PostgreSQL 13;Host=localhost;Port=5432;Username=postgres;Password=root;Database=Bot_Project"));
+                options.UseNpgsql((@"your server address here"));
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 
